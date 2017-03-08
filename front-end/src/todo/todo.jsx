@@ -16,13 +16,36 @@ class Todo extends Component {
         this.add = this.add.bind(this);
         this.change = this.change.bind(this);
         this.remove = this.remove.bind(this);
+        this.concluir = this.concluir.bind(this);
+        this.desfazer = this.desfazer.bind(this);
+        this.search = this.search.bind(this);
+        this.clear = this.clear.bind(this);
 
         this.refresh();
     }
 
-    refresh() {
-        axios.get(URL)
-            .then(resp => this.setState({...this.state, descricao: '', list: resp.data}));
+    refresh(descricao = '') {
+        const search = descricao ? `&description__regex=${descricao}` : '';
+        axios.get(`${URL}?sort=-createAt${search}`)
+            .then(resp => this.setState({...this.state, descricao, list: resp.data}));
+    }
+
+    search() {
+        this.refresh(this.state.descricao);
+    }
+
+    clear() {
+        this.refresh();
+    }
+
+    concluir(todo) {
+        axios.put(`${URL}/${todo._id}`, {...todo, done: true})
+            .then(resp => this.refresh(this.state.descricao));
+    }
+
+    desfazer(todo) {
+        axios.put(`${URL}/${todo._id}`, {...todo, done: false})
+            .then(resp => this.refresh(this.state.descricao));
     }
 
     add() {
@@ -33,7 +56,7 @@ class Todo extends Component {
 
     remove(todo) {
         axios.delete(`${URL}/${todo._id}`)
-            .then(resp => this.refresh());
+            .then(resp => this.refresh(this.state.descricao));
     }
 
     change(e) {
@@ -44,8 +67,10 @@ class Todo extends Component {
         return (
             <div>
                 <PageHeader name="Tarefas" small="Cadastro"></PageHeader>
-                <TodoForm add={this.add} change={this.change} descricao={this.state.descricao}/>
-                <TodoList list={this.state.list} remove={this.remove}/>
+                <TodoForm add={this.add} change={this.change} descricao={this.state.descricao}
+                    search={this.search} clear={this.clear} />
+                <TodoList list={this.state.list} remove={this.remove}
+                    concluir={this.concluir} desfazer={this.desfazer} />
             </div>
         );
     }
