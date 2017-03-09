@@ -67,9 +67,9 @@ class Todo extends Component {
         return (
             <div>
                 <PageHeader name="Tarefas" small="Cadastro"></PageHeader>
-                <TodoForm add={this.add} change={this.change} descricao={this.state.descricao}
+                <TodoForm add={this.add}
                     search={this.search} clear={this.clear} />
-                <TodoList list={this.state.list} remove={this.remove}
+                <TodoList remove={this.remove}
                     concluir={this.concluir} desfazer={this.desfazer} />
             </div>
         );
