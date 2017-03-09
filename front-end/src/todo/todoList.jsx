@@ -9,11 +9,11 @@ export default props => {
                 <td className={todo.done ? 'concluido' : ''}>{todo.description}</td>
                 <td>
                     <IconButton style="success" icon="check" hide={todo.done}
-                                onClick={() => props.concluir(todo)}></IconButton>
+                                onClick={() => props.concluir(todo)}> </IconButton>
                     <IconButton style="warning" icon="undo" hide={!todo.done}
-                                onClick={() => props.desfazer(todo)}></IconButton>
+                                onClick={() => props.desfazer(todo)}> </IconButton>
                     <IconButton style="danger" icon="trash-o"
-                        onClick={() => props.remove(todo)}></IconButton>
+                        onClick={() => props.remove(todo)}> </IconButton>
                 </td>
             </tr>
 
