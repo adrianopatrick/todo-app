@@ -11,8 +11,8 @@ export default (state = INITIAL_STATE, action) => {
         case 'DESCRIPTION_CHANGE':
             return {...state, descricao: action.payload};
         case 'TODO_SEARCHED':
-            return {...state, list: action.payload.data};
-        case 'TODO_ADDED':
+            return {...state, list: action.payload};
+        case 'TODO_CLEAR':
             return {...state, descricao: ''};
         default:
             return state;

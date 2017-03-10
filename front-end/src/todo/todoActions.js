@@ -5,25 +5,24 @@ import axios from 'axios';
 
 const URL = "http://localhost:3003/api/todos";
 
-export const changeDescription = event => ({
-    type: 'DESCRIPTION_CHANGE',
-    payload: event.target.value
-});
+export const changeDescription = event => {
+    return [{type: 'DESCRIPTION_CHANGE', payload: event.target.value}, search()];
+};
 
 export const search = () => {
-    const request = axios.get(`${URL}?sort=-createAt`);
-    return (
-        {
-            type: 'TODO_SEARCHED',
-            payload: request
-        }
-    )
+
+    return (dispatch, getState) => {
+        const descricao = getState().todo.descricao;
+        const search = descricao ? `&description__regex=/${descricao}/i` : '';
+        axios.get(`${URL}?sort=-createAt${search}`)
+            .then(resp => dispatch({type: 'TODO_SEARCHED', payload: resp.data}))
+    }
 }
 
 export const add = (description) => {
     return dispatch => {
         axios.post(URL, {description})
-            .then(resp => dispatch({type: 'TODO_ADDED', payload: resp.data}))
+            .then(resp => dispatch(clear()))
             .then(resp => dispatch(search()));
     }
 }
@@ -35,7 +34,7 @@ export const markAsDone = (todo) => {
     }
 }
 
-export const markAsPending = (todo) => {
+export const markAsPending = todo => {
     return dispatch => {
         axios.put(`${URL}/${todo._id}`, {...todo, done: false})
             .then(resp => dispatch(search()));
@@ -47,4 +46,8 @@ export const remove = todo => {
         axios.delete(`${URL}/${todo._id}`)
             .then(resp => dispatch(search()));
     }
+}
+
+export const clear = () => {
+    return [{type: 'TODO_CLEAR'}, search()];
 }
