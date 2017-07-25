@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-
 import IconButton from '../template/iconButton'
 import {markAsDone, markAsPending, remove} from './todoActions';
 
@@ -25,7 +24,7 @@ const TodoList = props => {
             </tr>
 
         ))
-    }
+    };
 
     return (
         <div>
@@ -34,7 +33,7 @@ const TodoList = props => {
                 <tr>
                     <th>Descricao</th>
                     <th className="tableActions">Ações</th>
-                </tr>
+                </tr>/
                 </thead>
                 <tbody>
                 {renderRows()}

@@ -1,15 +1,24 @@
 import React from 'react';
-import PageHeader from '../template/pageHeader'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-export default  props => (
-    <div>
-        <PageHeader name="Sobre" small="nós" />
+import FileUpload from '../fileupload/FileUpload';
 
-        <h2>Nossa História</h2>
-        <p>Lorem ipsum dolor sit amet...</p>
-        <h2>Missão e Visão</h2>
-        <p>Lorem ipsum dolor sit amet...</p>
-        <h2>Imprensa</h2>
-        <p>Lorem ipsum dolor sit amet...</p>
-    </div>
-)
+class About extends React.Component {
+
+    constructor(props){
+        super(props);
+    }
+
+    render() {
+        return (
+            <FileUpload />
+        )
+    }
+}
+
+const mapStateToProps = state => ({anexos: state.about.anexos})
+
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(About);

@@ -3,8 +3,9 @@
  */
 const INITIAL_STATE = {
     descricao: '',
-    list: []
-}
+    list: [],
+    requerimentoTO: null
+};
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -14,6 +15,8 @@ export default (state = INITIAL_STATE, action) => {
             return {...state, list: action.payload};
         case 'TODO_CLEAR':
             return {...state, descricao: ''};
+        case 'TODO_UPLOAD':
+            return {...state, requerimentoTO: {path: action.payload}};
         default:
             return state;
     }

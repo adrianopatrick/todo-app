@@ -1,0 +1,101 @@
+.fileup-description {
+    margin-bottom: 10px;
+    font-family: "Open Sans";
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 18.5714px;
+}
+
+.fileup-header{
+    border: 1px solid #d9d9d9;
+    color: #1b1d1f;
+    position: relative;
+    border-radius: 2px;
+    height: 45px;
+    background: -webkit-linear-gradient(top,#f6f7f9 0,#ebedf0 100%);
+}
+
+p{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.fileup-header input[type=file] {
+    position: absolute;
+    left: 20px;
+    top: 13px;
+    opacity: 0;
+}
+
+.fileup-button {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 10px;
+    padding: 3px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.fileup-button:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.fileup-button-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.fileup-button-primary:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+.fileup-body {
+    padding: .2em .4em;
+    border-top-width: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border: 1px solid #d5d5d5;
+    background: #fff;
+    color: #222;
+}
+
+.fileup-esconder {
+    display: none;
+}
+
+.fileup-message {
+    position: absolute;
+    top: 8px;
+    left: 100px;
+    color: red;
+    font-size: 15px;
+}
+
+.fileup-progress{
+
+}
+
+.fileup-detail{
+
+}
